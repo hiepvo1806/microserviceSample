@@ -1,6 +1,6 @@
 FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
 WORKDIR /app
-EXPOSE 7008
+EXPOSE 80
 EXPOSE 443
 
 FROM microsoft/dotnet:2.1-sdk AS build
