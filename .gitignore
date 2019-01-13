@@ -5,3 +5,6 @@
 /MicroserviceSample/.vs/MicroserviceSample/v15
 /MicroserviceSample/PlusService/bin/Debug/netcoreapp2.1
 /MicroserviceSample/PlusService/obj
+/MicroserviceSample/MultipleService/bin/Debug/netcoreapp2.1
+/MicroserviceSample/MultipleService/obj/Debug/netcoreapp2.1
+/MicroserviceSample/MultipleService/obj
