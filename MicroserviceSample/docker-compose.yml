@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  multipleservice:
+    image: multipleservice
+    build:
+      context: .
+      dockerfile: MultipleService/Dockerfile
+
+  plusservice:
+      image: plusservice
+      build:
+        context: .
+        dockerfile: PlusService/Dockerfile
