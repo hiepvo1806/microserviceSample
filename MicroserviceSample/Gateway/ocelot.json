@@ -1,0 +1,8 @@
+{
+  "ReRoutes": [],
+  "GlobalConfiguration": {
+    "BaseUrl": "localhost"
+  }
+}
+
+//If you are running containers Ocelot might run on the url http://123.12.1.1:6543 but has something like nginx in front of it responding on https://api.mybusiness.com. In this case the Ocelot base url should be https://api.mybusiness.com.

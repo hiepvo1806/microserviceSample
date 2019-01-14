@@ -8,3 +8,6 @@
 /MicroserviceSample/MultipleService/bin/Debug/netcoreapp2.1
 /MicroserviceSample/MultipleService/obj/Debug/netcoreapp2.1
 /MicroserviceSample/MultipleService/obj
+/MicroserviceSample/Gateway/obj/Debug/netcoreapp2.2
+/MicroserviceSample/Gateway/obj
+/MicroserviceSample/Gateway/bin/Debug/netcoreapp2.2
