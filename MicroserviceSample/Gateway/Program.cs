@@ -26,7 +26,7 @@ namespace Gateway
                         config
                             .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
                             .AddJsonFile("appsettings.json", true, true)
-                            .AddJsonFile("ocelot.json", optional: false, reloadOnChange: true)
+                            .AddJsonFile($"ocelot.{hostingContext.HostingEnvironment.EnvironmentName}.json", optional: false, reloadOnChange: true)
                             .AddEnvironmentVariables();
                     })
                     .ConfigureServices(s =>

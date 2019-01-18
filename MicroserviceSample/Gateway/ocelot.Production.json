@@ -1,0 +1,31 @@
+{
+    "ReRoutes": [
+      {
+        "DownstreamPathTemplate": "/api/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "api.plus.service",
+            "Port": 7008
+          }
+        ],
+        "UpstreamPathTemplate": "/plus/api/{everything}",
+        "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+      },
+      {
+        "DownstreamPathTemplate": "/api/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "api.multiple.service",
+            "Port": 7009
+          }
+        ],
+        "UpstreamPathTemplate": "/multiple/api/{everything}",
+        "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+      }
+    ],
+    "GlobalConfiguration": {
+      "BaseUrl": "localhost"
+    }
+  }
