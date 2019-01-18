@@ -12,3 +12,9 @@ services:
       build:
         context: .
         dockerfile: PlusService/Dockerfile
+
+  gateway:
+      image: gateway
+      build:
+        context: .
+        dockerfile: Gateway/Dockerfile
