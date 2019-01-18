@@ -26,6 +26,6 @@
       }
     ],
     "GlobalConfiguration": {
-      "BaseUrl": "localhost"
+      "BaseUrl": "api.gateway.service"
     }
   }
