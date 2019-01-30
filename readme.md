@@ -15,6 +15,10 @@ A small example for demo the microservice architecture.
 5. Add Ocelot. [CRITICAL] Beware of the  "DownstreamScheme": "http"
     - test by using "DownstreamPathTemplate": "/{everything}",
     - [CRITICAL] wrapping a try-catch in Program.cs => main for viewing the error of configuration of Ocelot
+6. Ocelot in Prod use internal port.
+7. Add RabbitMq : Remember set the port in both internal & external
+    - 192.168.99.100:8080 : for the management 
+    - pass : guest, user name : guest
 ### Installing
 
 - to be continue
