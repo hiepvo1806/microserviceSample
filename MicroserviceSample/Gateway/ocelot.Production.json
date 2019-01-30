@@ -6,7 +6,7 @@
         "DownstreamHostAndPorts": [
           {
             "Host": "api.plus",
-            "Port": 7008
+            "Port": 80
           }
         ],
         "UpstreamPathTemplate": "/plus/api/{everything}",
@@ -18,7 +18,7 @@
         "DownstreamHostAndPorts": [
           {
             "Host": "api.multiple",
-            "Port": 7009
+            "Port": 80
           }
         ],
         "UpstreamPathTemplate": "/multiple/api/{everything}",
@@ -30,7 +30,7 @@
         "DownstreamHostAndPorts": [
           {
             "Host": "api.plus",
-            "Port": 7008
+            "Port": 80
           }
         ],
         "UpstreamPathTemplate": "/{everything}",
@@ -38,7 +38,6 @@
       }
     ],
     "GlobalConfiguration": {
-      "BaseUrl": "http://api.gateway:7000",
-      "RequestIdKey": "OcRequestId"
+      "BaseUrl": "http://api.gateway:7000"
     }
   }
