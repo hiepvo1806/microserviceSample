@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,24 +22,9 @@ namespace Gateway
         {
             try
             {
-                WebHost.CreateDefaultBuilder(args)
-                    .ConfigureAppConfiguration((hostingContext, config) =>
-                    {
-                        config
-                            .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
-                            .AddJsonFile("appsettings.json", true, true)
-                            .AddJsonFile($"ocelot.{hostingContext.HostingEnvironment.EnvironmentName}.json", optional: false, reloadOnChange: true)
-                            .AddEnvironmentVariables();
-                    })
-                    .ConfigureServices(s =>
-                    {
-                        s.AddOcelot();
-                        s.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-                    })
-                    .Configure(a =>
-                    {
-                        a.UseOcelot().Wait();
-                    }).Build().Run();
+                IWebHost webhost = BuildWebHost(args);
+               
+                webhost.Run();
             }
             catch (Exception e)
             {
@@ -47,21 +34,24 @@ namespace Gateway
            
         }
 
-        //public static IWebHostBuilder CreateWebHostBuilder(string[] args)
-        //{
-        //    return WebHost.CreateDefaultBuilder(args)
-        //        .UseKestrel()
-        //        .UseContentRoot(Directory.GetCurrentDirectory())
-        //        .ConfigureAppConfiguration((hostingContext, config) =>
-        //        {
-        //            config
-        //                .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
-        //                .AddJsonFile("appsettings.json", true, true)
-        //                .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true,
-        //                    true)
-        //                .AddJsonFile("ocelot.json")
-        //                .AddEnvironmentVariables();
-        //        })
-        //        .UseStartup<Startup>();
+        private static IWebHost BuildWebHost(string[] args)
+        {
+            IWebHostBuilder builder = WebHost.CreateDefaultBuilder(args);
+            builder.ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config
+                        .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+                        .AddJsonFile("appsettings.json", true, true)
+                        //.AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
+                        .AddJsonFile("ocelot.Production.json")
+                        //.AddJsonFile($"configuration.{hostingContext.HostingEnvironment.EnvironmentName}.json", true)
+                        .AddEnvironmentVariables();
+
+                })
+                .UseStartup<Startup>()
+                .UseKestrel();
+
+            return builder.Build();
+        }
     }
 }

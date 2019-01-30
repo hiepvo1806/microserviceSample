@@ -1,7 +1,7 @@
 {
     "ReRoutes": [
       {
-        "DownstreamPathTemplate": "/api/{everything}",
+        "DownstreamPathTemplate": "/api/{url}",
         "DownstreamScheme": "http",
         "DownstreamHostAndPorts": [
           {
@@ -9,11 +9,11 @@
             "Port": 7008
           }
         ],
-        "UpstreamPathTemplate": "/plus/api/{everything}",
-        "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+        "UpstreamPathTemplate": "/plus/api/{url}",
+        "UpstreamHttpMethod": []
       },
       {
-        "DownstreamPathTemplate": "/api/{everything}",
+        "DownstreamPathTemplate": "/api/{url}",
         "DownstreamScheme": "http",
         "DownstreamHostAndPorts": [
           {
@@ -21,11 +21,23 @@
             "Port": 7009
           }
         ],
-        "UpstreamPathTemplate": "/multiple/api/{everything}",
-        "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+        "UpstreamPathTemplate": "/multiple/api/{url}",
+        "UpstreamHttpMethod": []
+      },
+      {
+        "DownstreamPathTemplate": "/{url}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 7008
+          }
+        ],
+        "UpstreamPathTemplate": "/{url}",
+        "UpstreamHttpMethod": []
       }
     ],
     "GlobalConfiguration": {
-      "BaseUrl": "localhost"
+      "BaseUrl": "localhost:7000"
     }
   }

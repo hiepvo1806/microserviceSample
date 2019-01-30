@@ -5,27 +5,40 @@
         "DownstreamScheme": "http",
         "DownstreamHostAndPorts": [
           {
-            "Host": "api.plus.service",
+            "Host": "api.plus",
             "Port": 7008
           }
         ],
         "UpstreamPathTemplate": "/plus/api/{everything}",
-        "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+        "UpstreamHttpMethod": []
       },
       {
         "DownstreamPathTemplate": "/api/{everything}",
         "DownstreamScheme": "http",
         "DownstreamHostAndPorts": [
           {
-            "Host": "api.multiple.service",
+            "Host": "api.multiple",
             "Port": 7009
           }
         ],
         "UpstreamPathTemplate": "/multiple/api/{everything}",
-        "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+        "UpstreamHttpMethod": []
+      },
+      {
+        "DownstreamPathTemplate": "/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "api.plus",
+            "Port": 7008
+          }
+        ],
+        "UpstreamPathTemplate": "/{everything}",
+        "UpstreamHttpMethod": []
       }
     ],
     "GlobalConfiguration": {
-      "BaseUrl": "api.gateway.service"
+      "BaseUrl": "http://api.gateway:7000",
+      "RequestIdKey": "OcRequestId"
     }
   }

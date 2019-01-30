@@ -1,20 +1,29 @@
 version: '3.4'
 
 services:
-  multipleservice:
+  api.multiple:
     image: multipleservice
+    hostname: api.multiple
+    ports:
+    - 7009:80
     build:
       context: .
       dockerfile: MultipleService/Dockerfile
 
-  plusservice:
+  api.plus:
       image: plusservice
+      hostname: api.plus
+      ports:
+      - 7008:80
       build:
         context: .
         dockerfile: PlusService/Dockerfile
 
-  gateway:
+  api.gateway:
       image: gateway
+      hostname: api.gateway
+      ports:
+      - 7000:80
       build:
         context: .
         dockerfile: Gateway/Dockerfile

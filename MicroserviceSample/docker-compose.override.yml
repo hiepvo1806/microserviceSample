@@ -1,26 +1,17 @@
 version: '3.4'
 
 services:
-  multipleservice:
-    hostname: api.multiple.service
-    ports:
-    - 7009:80
+  api.multiple:
     environment:
       - ASPNETCORE_URLS=http://0.0.0.0:80
       - ASPNETCORE_ENVIRONMENT=Production
 
-  plusservice:
-    hostname: api.plus.service
-    ports:
-    - 7008:80
+  api.plus:
     environment:
       - ASPNETCORE_URLS=http://0.0.0.0:80
       - ASPNETCORE_ENVIRONMENT=Production
 
-  gateway:
-    hostname: api.gateway.service
-    ports:
-    - 7000:80
+  api.gateway:
     environment:
       - ASPNETCORE_URLS=http://0.0.0.0:80
       - ASPNETCORE_ENVIRONMENT=Production
