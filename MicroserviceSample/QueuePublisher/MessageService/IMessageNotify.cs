@@ -8,7 +8,6 @@ namespace QueuePublisher.MessageService
 {
     public interface IMessageNotify<T>
     {
-        //void SetUpService();
         void NotifyService(T content);
     }
 }

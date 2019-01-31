@@ -15,10 +15,12 @@ namespace QueuePublisher.Controllers
     public class MessageController : ControllerBase
     {
         private readonly MessageQueueConfig _messageQueueConfig;
+        private readonly IMessageNotify<string> _messageNotify;
 
-        public MessageController(IOptions<MessageQueueConfig> messageQueueConfig)
+        public MessageController(IOptions<MessageQueueConfig> messageQueueConfig, IMessageNotify<string> messageNotify)
         {
             _messageQueueConfig = messageQueueConfig.Value;
+            _messageNotify = messageNotify;
         }
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()

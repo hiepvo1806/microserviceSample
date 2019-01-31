@@ -6,49 +6,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 
 namespace QueuePublisher.MessageService
 {
     public class MessageNotify : IMessageNotify<string>
     {
         private ConnectionFactory _connectionFactory;
-        private string HostName = "localhost";
-        private string UserName = "guest";
-        private string Password = "guest";
-        private string VirtualHost = "";
-        private string ExchangeName = "CQRSDemo.Exchange";
-        private int Port = 0;
+        private readonly MessageQueueConfig _messageQueueConfig;
         private IModel _model;
         private IConnection _connection;
-        private Subscription _subscription;
-        private IBasicProperties properties;
+        private IBasicProperties _properties;
 
-        public MessageNotify()
+        public MessageNotify(IOptions<MessageQueueConfig> messageQueueConfig)
         {
+            _messageQueueConfig = messageQueueConfig.Value;
             SetUpService();
         }
         public void NotifyService(string content)
         {
             byte[] messageBuffer = Encoding.Default.GetBytes(content);
-            _model.BasicPublish(ExchangeName, "", properties, messageBuffer);
+            _model.BasicPublish(_messageQueueConfig.ExchangeName, "", _properties, messageBuffer);
         }
 
         private void SetUpService()
         {
             _connectionFactory = new ConnectionFactory
             {
-                HostName = HostName,
-                UserName = UserName,
-                Password = Password
+                HostName = _messageQueueConfig.HostName,
+                UserName = _messageQueueConfig.UserName,
+                Password = _messageQueueConfig.Password
             };
-            if (string.IsNullOrEmpty(VirtualHost) == false)
-                _connectionFactory.VirtualHost = VirtualHost;
-            if (Port > 0)
-                _connectionFactory.Port = Port;
+            if (string.IsNullOrEmpty(_messageQueueConfig.VirtualHost) == false)
+                _connectionFactory.VirtualHost = _messageQueueConfig.VirtualHost;
+            if (_messageQueueConfig.Port > 0)
+                _connectionFactory.Port = _messageQueueConfig.Port;
             _connection = _connectionFactory.CreateConnection();
             _model = _connection.CreateModel();
-            properties = _model.CreateBasicProperties();
-            properties.Persistent = true;
+            _properties = _model.CreateBasicProperties();
+            _properties.Persistent = true;
         }
     }
 }

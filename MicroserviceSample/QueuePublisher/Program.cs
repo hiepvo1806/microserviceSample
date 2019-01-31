@@ -25,8 +25,7 @@ namespace QueuePublisher
                 throw;
             }
         }
-
-
+        
         private static IWebHost BuildWebHost(string[] args)
         {
             IWebHostBuilder builder = WebHost.CreateDefaultBuilder(args);

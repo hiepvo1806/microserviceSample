@@ -27,6 +27,7 @@ namespace QueuePublisher
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<MessageQueueConfig>(options => Configuration.GetSection("MessageQueueConfig").Bind(options));
+            services.AddSingleton<IMessageNotify<string>, MessageNotify>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
