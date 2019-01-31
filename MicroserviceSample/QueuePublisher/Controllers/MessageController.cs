@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using QueuePublisher.MessageService;
 
 namespace QueuePublisher.Controllers
 {
@@ -12,10 +14,16 @@ namespace QueuePublisher.Controllers
     [ApiController]
     public class MessageController : ControllerBase
     {
+        private readonly MessageQueueConfig _messageQueueConfig;
+
+        public MessageController(IOptions<MessageQueueConfig> messageQueueConfig)
+        {
+            _messageQueueConfig = messageQueueConfig.Value;
+        }
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "MessageController ok!" };
+            return new string[] { $"MessageController ok! {JsonConvert.SerializeObject(_messageQueueConfig)}" };
         }
 
         [HttpPost]

@@ -14,11 +14,34 @@ namespace QueuePublisher
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            try
+            {
+                IWebHost webhost = BuildWebHost(args);
+                webhost.Run();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+
+        private static IWebHost BuildWebHost(string[] args)
+        {
+            IWebHostBuilder builder = WebHost.CreateDefaultBuilder(args);
+            builder.ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config
+                        .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+                        .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
+                        .AddEnvironmentVariables();
+
+                })
+                .UseStartup<Startup>()
+                .UseKestrel();
+
+            return builder.Build();
+        }
     }
 }

@@ -12,3 +12,5 @@
 /MicroserviceSample/Gateway/obj
 /MicroserviceSample/Gateway/bin/Debug/netcoreapp2.2
 /MicroserviceSample/WebApplication1
+/MicroserviceSample/QueuePublisher/bin/Debug/netcoreapp2.2
+/MicroserviceSample/QueuePublisher/obj
