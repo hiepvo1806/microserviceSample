@@ -26,7 +26,7 @@ $passwordProp.SetValue($factory, "guest")
 
 
 $portProp = [RabbitMQ.Client.ConnectionFactory].GetField("Port")
-$portProp.SetValue($factory, 8080)
+$portProp.SetValue($factory, 5672)
 
 $createConnectionMethod = [RabbitMQ.Client.ConnectionFactory].GetMethod("CreateConnection", [Type]::EmptyTypes)
 $connection = $createConnectionMethod.Invoke($factory, "instance,public", $null, $null, $null)
