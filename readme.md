@@ -21,9 +21,13 @@ A small example for demo the microservice architecture.
     - pass : guest, user name : guest
     - script:
         https://stackoverflow.com/questions/28339116/not-allowed-to-load-assembly-from-network-location
+    -  .\SetupRabbitMQ.bat
 8. Ping in Docker
     - docker exec -it dockerContainerid bash
     - apt-get update && apt-get install -y iputils-ping
+9. Clean Volume:
+    docker system prune --volumes
+    docker container rm cc3f2ff51cab
 
 ### Installing
 

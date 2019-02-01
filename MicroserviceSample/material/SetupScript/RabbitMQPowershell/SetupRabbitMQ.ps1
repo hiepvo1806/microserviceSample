@@ -45,5 +45,6 @@ Write-Host "Creating Exchange"
 $exchangeType = [RabbitMQ.Client.ExchangeType]::Fanout
 $args = @{"alternate-exchange"="Module3.Sample10.FailuresExchange";};
 $model.ExchangeDeclare("CQRSDemo.Exchange", $exchangeType, $true,$false, $args)
-
+$model.QueueDeclare("CQRSDemo.Exchange.NormalQueue", $true, $false, $false, $null)
+$model.QueueBind("CQRSDemo.Exchange.NormalQueue", "CQRSDemo.Exchange", "")
 Write-Host "Setup complete"

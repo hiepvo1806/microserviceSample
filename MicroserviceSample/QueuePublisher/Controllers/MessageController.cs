@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using QueuePublisher.MessageService;
+using System.Collections.Generic;
 
 namespace QueuePublisher.Controllers
 {
@@ -31,7 +27,17 @@ namespace QueuePublisher.Controllers
         [HttpPost]
         public ActionResult<IEnumerable<string>> Post([FromBody] PostContent content)
         {
-            return new[] { $"MessageController HttpPost! : {JsonConvert.SerializeObject(content)}" };
+            try
+            {
+                _messageNotify.NotifyService(content.Content);
+                return Ok();
+            }
+            catch (System.Exception e)
+            {
+
+                return BadRequest(JsonConvert.SerializeObject(e));
+            }
+
         }
     }
 
