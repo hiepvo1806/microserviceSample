@@ -19,6 +19,8 @@ A small example for demo the microservice architecture.
 7. Add RabbitMq : Remember set the port in both internal & external
     - 192.168.99.100:8080 : for the management 
     - pass : guest, user name : guest
+    - script:
+        https://stackoverflow.com/questions/28339116/not-allowed-to-load-assembly-from-network-location
 8. Ping in Docker
     - docker exec -it dockerContainerid bash
     - apt-get update && apt-get install -y iputils-ping

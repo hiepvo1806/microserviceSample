@@ -1,4 +1,4 @@
 
-powershell.exe -noexit .\SetupRabbitMQ.ps1 -RabbitDllPath "RabbitMQ.Client.dll"
+powershell.exe -noexit .\SetupRabbitMQ.ps1 -RabbitDllPath "rabbitmq.client.dll"
 
 pause
