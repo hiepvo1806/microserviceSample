@@ -7,6 +7,28 @@ services:
     - 8080:15672
     - 5672:5672
 
+  queue.listener:
+    image: queuelistener
+    hostname: queue.listener
+    ports:
+    - 7001:80
+    build:
+      context: .
+      dockerfile: QueueListener/Dockerfile
+    depends_on:
+      - rabbitmq
+
+  # queue.publisher:
+  #   image: queuepublisher
+  #   hostname: queue.publisher
+  #   ports:
+  #   - 7002:80
+  #   build:
+  #     context: .
+  #     dockerfile: QueuePublisher/Dockerfile
+  #   depends_on:
+  #     - rabbitmq
+
   api.multiple:
     image: multipleservice
     hostname: api.multiple
